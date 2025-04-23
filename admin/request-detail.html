@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Detail | API Hub Governance Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="bg-gray-600 rounded-full p-2 mr-2">
+                            <i class="ph ph-shield text-xl text-white"></i>
+                        </div>
+                        <span class="font-bold text-gray-800">API Hub Admin</span>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="dashboard.html" class="border-gray-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="ph ph-inbox mr-1"></i> Requests
+                        </a>
+                        <a href="audit-log.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="ph ph-scroll mr-1"></i> Audit Log
+                        </a>
+                        <a href="settings.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="ph ph-gear mr-1"></i> Settings
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button type="button" class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                        <i class="ph ph-bell text-xl"></i>
+                    </button>
+
+                    <div class="ml-3 relative">
+                        <div class="flex items-center">
+                            <div class="bg-gray-100 rounded-full p-2 mr-2">
+                                <i class="ph ph-user-gear text-gray-600"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-700">Admin User</span>
+                            <i class="ph ph-caret-down ml-1 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="bg-white p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500" onclick="toggleSidebar()">
+                        <i class="ph ph-list text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="sm:hidden hidden" id="sidebar">
+        <div class="pt-2 pb-3 space-y-1">
+            <a href="dashboard.html" class="bg-gray-50 border-gray-500 text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Requests</a>
+            <a href="audit-log.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Audit Log</a>
+            <a href="settings.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Settings</a>
+        </div>
+        <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-4">
+                <div class="flex-shrink-0">
+                    <div class="bg-gray-100 rounded-full p-2">
+                        <i class="ph ph-user-gear text-gray-600"></i>
+                    </div>
+                </div>
+                <div class="ml-3">
+                    <div class="text-base font-medium text-gray-800">Admin User</div>
+                    <div class="text-sm font-medium text-gray-500">admin@apiportal.gov.om</div>
+                </div>
+            </div>
+            <div class="mt-3 space-y-1">
+                <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Your Profile</a>
+                <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Settings</a>
+                <a href="../index.html" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign out</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-6">
+            <a href="dashboard.html" class="text-gray-600 hover:text-gray-800 flex items-center">
+                <i class="ph ph-arrow-left mr-1"></i> Back to Requests
+            </a>
+        </div>
+
+        <div class="md:flex md:items-center md:justify-between mb-6">
+            <div class="flex-1 min-w-0">
+                <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                    Request ID #REQ-2023-001
+                </h1>
+                <div class="mt-2 flex items-center">
+                    <span class="px-2 py-1 text-xs rounded-full status-pending mr-2">
+                        Pending
+                    </span>
+                    <span class="text-gray-500 text-sm">Submitted on August 15, 2023</span>
+                </div>
+            </div>
+            <div class="mt-5 flex xl:mt-0 xl:ml-4">
+                <span class="hidden sm:block ml-3">
+                    <button type="button" onclick="showModal('deny-modal')" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                        <i class="ph ph-x-circle mr-2 text-red-600"></i> Deny
+                    </button>
+                </span>
+
+                <span class="hidden sm:block ml-3">
+                    <button type="button" onclick="showModal('approve-modal')" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        <i class="ph ph-check-circle mr-2"></i> Approve
+                    </button>
+                </span>
+            </div>
+        </div>
+
+        <!-- Request Details -->
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-8">
+            <div class="px-4 py-5 sm:px-6 bg-gray-50">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Request Information</h3>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">Details about this API access request.</p>
+            </div>
+            <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
+                <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500">From Ministry</dt>
+                        <dd class="mt-1 text-sm text-gray-900 flex items-center">
+                            <div class="bg-blue-100 rounded-full p-1 flex items-center justify-center h-7 w-7 mr-2">
+                                <span class="font-semibold text-blue-800">MC</span>
+                            </div>
+                            Ministry of Commerce
+                        </dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500">To Ministry</dt>
+                        <dd class="mt-1 text-sm text-gray-900 flex items-center">
+                            <div class="bg-red-100 rounded-full p-1 flex items-center justify-center h-7 w-7 mr-2">
+                                <span class="font-semibold text-red-800">RP</span>
+                            </div>
+                            Royal Oman Police
+                        </dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500">Requester Email</dt>
+                        <dd class="mt-1 text-sm text-gray-900">mociip@example.gov.om</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500">Access Duration</dt>
+                        <dd class="mt-1 text-sm text-gray-900">3 Months</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500">Sensitivity Level</dt>
+                        <dd class="mt-1 text-sm text-gray-900">High - Contains sensitive citizen data</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500">Estimated Usage</dt>
+                        <dd class="mt-1 text-sm text-gray-900">2,000 calls/month</dd>
+                    </div>
+                    <div class="sm:col-span-3">
+                        <dt class="text-sm font-medium text-gray-500">Purpose of Request</dt>
+                        <dd class="mt-1 text-sm text-gray-900">
+                            <p>We need access to these APIs to validate citizen identity during the company registration process. This will help streamline the process and reduce fraud by confirming the identity and address of individuals registering companies. The integration will be done through our secure company registration portal.</p>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+        
+        <!-- APIs Requested -->
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-8">
+            <div class="px-4 py-5 sm:px-6 bg-gray-50">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">APIs Requested</h3>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">The following APIs are being requested.</p>
+            </div>
+            <div class="border-t border-gray-200">
+                <ul class="divide-y divide-gray-200">
+                    <!-- API 1 -->
+                    <li class="px-4 py-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center">
+                                    <span class="font-medium text-blue-600">/verify-citizen</span>
+                                    <span class="ml-2 px-2 py-0.5 text-xs rounded-full bg-green-100 text-green-800">GET</span>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500">Verify citizen identity using civil ID number</p>
+                                <div class="mt-2 flex items-center text-xs text-gray-500">
+                                    <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-800 mr-2">Identity Check</span>
+                                    <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-800 mr-2">Verification</span>
+                                    <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-800">Civil ID</span>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="button" class="inline-flex items-center text-gray-600 hover:text-gray-900">
+                                    <i class="ph ph-info text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <!-- API 2 -->
+                    <li class="px-4 py-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center">
+                                    <span class="font-medium text-blue-600">/get-citizen-address</span>
+                                    <span class="ml-2 px-2 py-0.5 text-xs rounded-full bg-green-100 text-green-800">GET</span>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500">Retrieve registered address details for a citizen</p>
+                                <div class="mt-2 flex items-center text-xs text-gray-500">
+                                    <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-800 mr-2">Address</span>
+                                    <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-800 mr-2">Location</span>
+                                    <span class="px-2 py-1 rounded-md bg-gray-100 text-gray-800">Resident Information</span>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="button" class="inline-flex items-center text-gray-600 hover:text-gray-900">
+                                    <i class="ph ph-info text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Status History -->
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-8">
+            <div class="px-4 py-5 sm:px-6 bg-gray-50">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Status History</h3>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">Timeline of actions taken on this request.</p>
+            </div>
+            <div class="border-t border-gray-200">
+                <ul class="divide-y divide-gray-200">
+                    <li class="px-4 py-4">
+                        <div class="flex items-start">
+                            <div class="min-w-0 flex-1">
+                                <p class="text-sm font-medium text-gray-900">Submitted by Ministry of Commerce</p>
+                                <p class="text-sm text-gray-500">Aug 15, 2023 at 10:23 AM</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="px-4 py-4">
+                        <div class="flex items-start">
+                            <div class="min-w-0 flex-1">
+                                <p class="text-sm font-medium text-gray-900">Request received by API Hub</p>
+                                <p class="text-sm text-gray-500">Aug 15, 2023 at 10:23 AM</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="px-4 py-4">
+                        <div class="flex items-start">
+                            <div class="min-w-0 flex-1">
+                                <p class="text-sm font-medium text-gray-900">Notification sent to Royal Oman Police</p>
+                                <p class="text-sm text-gray-500">Aug 15, 2023 at 10:25 AM</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Mobile Actions -->
+        <div class="fixed bottom-0 inset-x-0 sm:hidden bg-white border-t border-gray-200 z-10">
+            <div class="flex justify-between px-4 py-3">
+                <button type="button" onclick="showModal('deny-modal')" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                    <i class="ph ph-x-circle mr-2 text-red-600"></i> Deny
+                </button>
+                <button type="button" onclick="showModal('approve-modal')" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    <i class="ph ph-check-circle mr-2"></i> Approve
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Approve Modal -->
+    <div id="approve-modal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <i class="ph ph-check-circle text-green-600"></i>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Approve API Access Request
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">
+                                    Are you sure you want to approve this request? This will grant access to the requested APIs for the Ministry of Commerce.
+                                </p>
+                                <div class="mt-4">
+                                    <label for="approve-comment" class="block text-sm font-medium text-gray-700">Optional Comment</label>
+                                    <div class="mt-1">
+                                        <textarea id="approve-comment" name="approve-comment" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="window.location.href='dashboard.html'" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        Approve
+                    </button>
+                    <button type="button" onclick="hideModal('approve-modal')" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deny Modal -->
+    <div id="deny-modal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <i class="ph ph-x-circle text-red-600"></i>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Deny API Access Request
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">
+                                    Are you sure you want to deny this request? The Ministry of Commerce will not be granted access to the requested APIs.
+                                </p>
+                                <div class="mt-4">
+                                    <label for="deny-reason" class="block text-sm font-medium text-gray-700">Reason for Denial <span class="text-red-600">*</span></label>
+                                    <div class="mt-1">
+                                        <textarea id="deny-reason" name="deny-reason" rows="3" required class="shadow-sm focus:ring-red-500 focus:border-red-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                                    </div>
+                                    <p class="mt-1 text-xs text-gray-500">This reason will be shared with the requesting ministry.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="window.location.href='dashboard.html'" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        Deny
+                    </button>
+                    <button type="button" onclick="hideModal('deny-modal')" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12 pb-16 sm:pb-0">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm text-gray-500">© 2023 API Hub Governance Platform. Oman Government Entities.</p>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+</body>
+</html> 

@@ -1,0 +1,47 @@
+/* Custom styles beyond Tailwind */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.sidebar-active {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-left: 3px solid #3B82F6;
+}
+
+.status-pending {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+.status-approved {
+    background-color: #D1FAE5;
+    color: #065F46;
+}
+
+.status-denied {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+}
+
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+/* Specific styling for data tables */
+.data-table th {
+    text-align: left;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    color: #374151;
+}
+
+.data-table td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+}
+
+.data-table tr:hover {
+    background-color: #F9FAFB;
+} 

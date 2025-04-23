@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Log | API Hub Governance Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="bg-gray-600 rounded-full p-2 mr-2">
+                            <i class="ph ph-shield text-xl text-white"></i>
+                        </div>
+                        <span class="font-bold text-gray-800">API Hub Admin</span>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="dashboard.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="ph ph-inbox mr-1"></i> Requests
+                        </a>
+                        <a href="audit-log.html" class="border-gray-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="ph ph-scroll mr-1"></i> Audit Log
+                        </a>
+                        <a href="settings.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <i class="ph ph-gear mr-1"></i> Settings
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button type="button" class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                        <i class="ph ph-bell text-xl"></i>
+                    </button>
+
+                    <div class="ml-3 relative">
+                        <div class="flex items-center">
+                            <div class="bg-gray-100 rounded-full p-2 mr-2">
+                                <i class="ph ph-user-gear text-gray-600"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-700">Admin User</span>
+                            <i class="ph ph-caret-down ml-1 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="bg-white p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500" onclick="toggleSidebar()">
+                        <i class="ph ph-list text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="sm:hidden hidden" id="sidebar">
+        <div class="pt-2 pb-3 space-y-1">
+            <a href="dashboard.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Requests</a>
+            <a href="audit-log.html" class="bg-gray-50 border-gray-500 text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Audit Log</a>
+            <a href="settings.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Settings</a>
+        </div>
+        <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-4">
+                <div class="flex-shrink-0">
+                    <div class="bg-gray-100 rounded-full p-2">
+                        <i class="ph ph-user-gear text-gray-600"></i>
+                    </div>
+                </div>
+                <div class="ml-3">
+                    <div class="text-base font-medium text-gray-800">Admin User</div>
+                    <div class="text-sm font-medium text-gray-500">admin@apiportal.gov.om</div>
+                </div>
+            </div>
+            <div class="mt-3 space-y-1">
+                <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Your Profile</a>
+                <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Settings</a>
+                <a href="../index.html" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign out</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="md:flex md:items-center md:justify-between mb-6">
+            <div class="flex-1 min-w-0">
+                <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                    System Audit Log
+                </h1>
+                <p class="mt-1 text-gray-500">Track all actions taken within the API Hub governance platform.</p>
+            </div>
+            <div class="mt-4 flex md:mt-0 md:ml-4">
+                <span class="shadow-sm rounded-md">
+                    <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                        <i class="ph ph-export mr-2"></i> Export Log
+                    </button>
+                </span>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <!-- Action Type Filter -->
+                <div>
+                    <label for="action-filter" class="block text-sm font-medium text-gray-700 mb-1">Action Type</label>
+                    <select id="action-filter" name="action-filter" class="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                        <option value="all">All Actions</option>
+                        <option value="request-submitted">Request Submitted</option>
+                        <option value="request-approved">Request Approved</option>
+                        <option value="request-denied">Request Denied</option>
+                        <option value="user-login">User Login</option>
+                        <option value="settings-changed">Settings Changed</option>
+                    </select>
+                </div>
+                
+                <!-- Ministry Filter -->
+                <div>
+                    <label for="ministry-filter" class="block text-sm font-medium text-gray-700 mb-1">Ministry</label>
+                    <select id="ministry-filter" name="ministry-filter" class="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                        <option value="all">All Ministries</option>
+                        <option value="mociip">Ministry of Commerce</option>
+                        <option value="rop">Royal Oman Police</option>
+                        <option value="mohup">Ministry of Housing</option>
+                        <option value="moe">Ministry of Education</option>
+                        <option value="moh">Ministry of Health</option>
+                    </select>
+                </div>
+                
+                <!-- Date Range -->
+                <div>
+                    <label for="date-range" class="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
+                    <div class="mt-1 grid grid-cols-2 gap-2">
+                        <input type="date" name="date-from" id="date-from" class="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="From">
+                        <input type="date" name="date-to" id="date-to" class="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="To">
+                    </div>
+                </div>
+                
+                <!-- Search -->
+                <div>
+                    <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                    <div class="relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="ph ph-magnifying-glass text-gray-400"></i>
+                        </div>
+                        <input type="text" name="search" id="search" class="focus:ring-gray-500 focus:border-gray-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md" placeholder="Search logs...">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4 flex justify-end">
+                <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                    <i class="ph ph-funnel mr-2"></i> Apply Filters
+                </button>
+            </div>
+        </div>
+
+        <!-- Audit Log Table -->
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200 data-table">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Timestamp
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Action
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Actor
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Target Ministry
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Details
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <!-- Log Entry 1 -->
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            2023-08-15 10:23 AM
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                Request Submitted
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <div class="bg-blue-100 rounded-full p-1 flex items-center justify-center h-7 w-7 mr-2">
+                                    <span class="font-semibold text-blue-800">MC</span>
+                                </div>
+                                Ministry of Commerce
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <div class="bg-red-100 rounded-full p-1 flex items-center justify-center h-7 w-7 mr-2">
+                                    <span class="font-semibold text-red-800">RP</span>
+                                </div>
+                                Royal Oman Police
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            Request ID: REQ-2023-001, APIs: /verify-citizen, /get-citizen-address
+                        </td>
+                    </tr>
+                    
+                    <!-- Log Entry 2 -->
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            2023-08-15 10:25 AM
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                                Notification Sent
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <div class="bg-gray-100 rounded-full p-1 flex items-center justify-center h-7 w-7 mr-2">
+                                    <i class="ph ph-cube text-gray-600 text-sm"></i>
+                                </div>
+                                System
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <div class="bg-red-100 rounded-full p-1 flex items-center justify-center h-7 w-7 mr-2">
+                                    <span class="font-semibold text-red-800">RP</span>
+                                </div>
+                                Royal Oman Police
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            Email notification sent regarding Request ID: REQ-2023-001
+                        </td>
+                    </tr>
+                    
+                    <!-- Log Entry 3 -->
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            2023-08-10 14:32 PM
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                Request Approved
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <div class="bg-blue-100 rounded-full p-1 flex items-center justify-center h-7 w-7 mr-2">
+                                    <span class="font-semibold text-blue-800">MH</span>
+                                </div>
+                                Ministry of Health
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <div class="bg-purple-100 rounded-full p-1 flex items-center justify-center h-7 w-7 mr-2">
+                                    <span class="font-semibold text-purple-800">ME</span>
+                                </div>
+                                Ministry of Education
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            Request ID: REQ-2023-002 approved with comment: "Approved for the requested duration."
+                        </td>
+                    </tr>
+                    
+                    <!-- Log Entry 4 -->
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            2023-08-05 09:45 AM
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                Request Denied
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <div class="bg-yellow-100 rounded-full p-1 flex items-center justify-center h-7 w-7 mr-2">
+                                    <span class="font-semibold text-yellow-800">MF</span>
+                                </div>
+                                Ministry of Finance
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <div class="bg-green-100 rounded-full p-1 flex items-center justify-center h-7 w-7 mr-2">
+                                    <span class="font-semibold text-green-800">MH</span>
+                                </div>
+                                Ministry of Housing
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            Request ID: REQ-2023-003 denied with reason: "Insufficient justification for sensitive tax data access."
+                        </td>
+                    </tr>
+                    
+                    <!-- Log Entry 5 -->
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            2023-08-01 11:20 AM
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                                User Login
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <div class="bg-gray-100 rounded-full p-1 flex items-center justify-center h-7 w-7 mr-2">
+                                    <i class="ph ph-user-gear text-gray-600 text-sm"></i>
+                                </div>
+                                Admin User
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <span class="text-gray-400">—</span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            Admin login from IP: 192.168.1.100
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- Pagination -->
+            <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                <div class="flex-1 flex justify-between sm:hidden">
+                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Previous
+                    </a>
+                    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Next
+                    </a>
+                </div>
+                <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                    <div>
+                        <p class="text-sm text-gray-700">
+                            Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">82</span> results
+                        </p>
+                    </div>
+                    <div>
+                        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Previous</span>
+                                <i class="ph ph-caret-left"></i>
+                            </a>
+                            <a href="#" aria-current="page" class="z-10 bg-gray-50 border-gray-500 text-gray-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                1
+                            </a>
+                            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                2
+                            </a>
+                            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                3
+                            </a>
+                            <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                                ...
+                            </span>
+                            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                17
+                            </a>
+                            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Next</span>
+                                <i class="ph ph-caret-right"></i>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm text-gray-500">© 2023 API Hub Governance Platform. Oman Government Entities.</p>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+</body>
+</html> 
